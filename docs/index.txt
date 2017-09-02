@@ -10,6 +10,13 @@ A hue client for :py:mod:`uvhttp`.
 .. autoclass:: uvhue.uvhue.Hue
    :members:
 
+You can use the rgb module to convert rgb colors to the xz colors
+that hue expects:
+
+.. automodule:: uvhue.rgb
+   :members:
+
+
 Indices and tables
 ==================
 
