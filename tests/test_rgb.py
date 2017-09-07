@@ -20,3 +20,9 @@ def test_decimal_to_xyz():
 def test_xyz_to_xy():
     assert_equal(xyz_to_xy((0.67504511375299, 0.23720683670248477, 0.13199523420106749)), (0.6464418804969204, 0.22715583071502674))
 
+def test_is_grey():
+    assert_equal(is_grey((100, 100, 100)), True)
+    assert_equal(is_grey((101, 100, 99)), True)
+    assert_equal(is_grey((110, 100, 90)), True)
+    assert_equal(is_grey((111, 100, 90)), False)
+    assert_equal(is_grey((121, 100, 100)), False)
