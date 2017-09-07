@@ -1,4 +1,5 @@
 from uvhttp.http import Session
+import asyncio
 import json
 
 class HueException(Exception):
@@ -96,6 +97,9 @@ class Hue(Session):
         return self.__lights
 
     async def set_state(self, light, state):
+        """
+        Set a state for a light.
+        """
         data = json.dumps(state).encode()
 
         response = await self.api(b'PUT', 'lights/{}/state'.format(light).encode(), data=data)
@@ -103,11 +107,18 @@ class Hue(Session):
         return response.json() == state
 
     async def set_states(self, state, refresh=False):
+        """
+        Set a state for all lights.
+        """
         lights = await self.lights(refresh=refresh)
 
-        result = True
+        state_coros = []
         for light in lights:
-           state_result = await self.set_state(light, state)
+           state_coros.append(self.set_state(light, state))
+
+        state_results, _ = await asyncio.wait(state_coros)
+        result = True
+        for state_result in state_results:
            if not state_result:
                result = False
 
