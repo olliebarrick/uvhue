@@ -47,3 +47,9 @@ def rgb_to_xy(rgb):
 
     xyz = decimal_to_xyz(decimal)
     return xyz_to_xy(xyz)
+
+def is_grey(rgb, threshold=20):
+    """
+    Return true if an rgb color is a shade of grey.
+    """
+    return abs(rgb[0] - rgb[1]) <= threshold and abs(rgb[1] - rgb[2]) <= threshold and abs(rgb[2] - rgb[0]) <= threshold
