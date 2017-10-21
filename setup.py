@@ -5,7 +5,7 @@ requirements = os.path.join(os.path.dirname(__file__), 'requirements.txt')
 
 setup(
     name='uvhue',
-    version='0.3',
+    version='0.4',
     description='Hue client for uvhttp',
     url='https://github.com/justinbarrick/uvhue',
     packages=['uvhue'],
